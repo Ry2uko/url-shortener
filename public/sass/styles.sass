@@ -14,7 +14,7 @@ body, html
   background-color: $bg-color
   font-family: 'Source Sans Pro', Helvetica, sans-serif
 
-h1
+h1.title
   text-align: center
   margin-top: 3.4rem
   font:
@@ -51,6 +51,13 @@ form.form-wrapper
       border-color: $theme-blue
       color: $theme-blue
 
+  p.invalid-msg
+    color: #fff
+    text-align: center
+    margin-bottom: 12px
+    font-size: 1.2rem
+    user-select: none
+
 div
   &.input-div
     label
@@ -63,7 +70,7 @@ div
         border-color: $theme-blue
 
   &.inputbb-text
-    margin-bottom: 35px !important
+    margin-bottom: 0px !important
 
     p
       margin: 10px 0 1px 0

@@ -23,13 +23,13 @@
     <form action="/api/shorten" method="POST" class="form-wrapper container">
       <div class="mb-4 input-div">
         <label for="urlinput" class="form-label">Your URL</label>
-        <input type="text" placeholder="Paste your url" id="urlinput" 
+        <input type="text" placeholder="https://www.youtube.com/watch?v=BEP6piDlrWw" id="urlinput" 
         class="input-text form-control shadow-none" autocomplete="off" 
         name="original-url" />
       </div>
       <div class="mb-3 input-div">
         <label for="customidinput" class="form-label">Custom URL Id <small>(optional)</small></label>
-        <input type="text" placeholder="Input url id" id="idinput" 
+        <input type="text" placeholder="jett1" id="idinput" 
         class="input-text form-control shadow-none" autocomplete="off"
         name="url-id" />
       </div>
@@ -40,11 +40,12 @@
           <li>Alphanumeric (letters and numbers)</li>
         </ul>
       </div>
+      <p class="invalid-msg">easter egg</p>
       <input type="submit" class="btn" id="shortenUrl" 
       value="Shorten URL">
     </form>
 
-    <p class="credits-footer">A project by <a href="https://github.com/Ry2uko">Ry2uko</a></p>
+    <p class="credits-footer">A project by <a href="https://github.com/Ry2uko" target="_blank">Ry2uko</a></p>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" 
     integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" 
