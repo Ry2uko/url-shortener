@@ -23,6 +23,7 @@ router.route('/')
 
     try {
       await url_model.save();
+      res.render('shortened', {original_url, shortened_url});
     } catch (err) {
       res.status(400).json({ error: err.message });
     }

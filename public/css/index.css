@@ -8,7 +8,6 @@
 body, html {
   width: 100%;
   height: 100%;
-  body: 100%;
   overflow-x: hidden;
   background-color: #F9F9F9;
   font-family: 'Source Sans Pro', Helvetica, sans-serif;
@@ -108,4 +107,4 @@ p.credits-footer {
 p.credits-footer a {
   text-decoration: none;
 }
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=index.css.map */
