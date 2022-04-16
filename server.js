@@ -15,6 +15,7 @@ db.once('open', () => console.log('Connected to Database'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use(express.json()); // Raw requests
 
 app.use('/public', express.static(`${process.cwd()}/public`));
 
@@ -27,7 +28,7 @@ const shortenRouter = require('./routes/shorten');
 app.use('/api/shorten', shortenRouter);
 
 app.use((req, res) => {
-  res.status(404).send('404 Not Found');
+  return res.status(404).json({ error: "Not Found" });
 })
 
 app.listen(port, () => {

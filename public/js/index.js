@@ -1,9 +1,10 @@
 const Validation = {
   validateUrl(urlString) {
     let url;
+    
     try {
       url = new URL(urlString);
-    } catch {
+    } catch(err) {
       return false;
     }
 
@@ -33,6 +34,7 @@ const Validation = {
 }
 
 $(document).ready(function(){
+  // Client-side Validation
   $('form').on('submit', (e) => {
     const url = $('#urlinput').val();
     const id = $('#idinput').val();
@@ -41,7 +43,6 @@ $(document).ready(function(){
     let validateUrl = Validation.validateUrl,
     displayError = Validation.displayError;
 
-    // Validation
     return url.length < 1 ? displayError('no-url', e)
     : !validateUrl(url) ? displayError('invalid-url', e)
     : id.length !== 5 && id.length !== 0 ? displayError('invalid-len-id', e)
@@ -49,6 +50,7 @@ $(document).ready(function(){
     : "";
  
   });
+  
   $('input[type="text"]').on('keypress', () => {
     $('.invalid-msg').text('easter bunny').css('color', '#fff');
   });

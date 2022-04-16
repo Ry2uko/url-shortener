@@ -1,9 +1,77 @@
+require('dotenv').config();
+
 const express = require('express');
 const router = express.Router();
-const URL = require('../models/url');
+const URLMODEL = require('../models/url');
 
-router.post('/', (req, res) => {
-  res.status(201).json(req.body);
+router.post('/', getId, validateBody, (req, res) => {
+  const url = res.locals.url,
+  id = res.locals.id;
+  res.status(201).json({
+    "original_url": url,
+    "shortened_url": `${process.env.HOST || ""}/api/shorten/${id}`
+  });
 });
+
+
+function getId(req, res, next) {
+  const alphanum = '1the2quick3brown4fox5jumped6over7the8lazy9dog0'.split('');
+  const IDLEN = 5;
+
+  if (req.body.url_id === '') {
+    let generatedId = '', 
+    uppCount = Math.floor(Math.random() * IDLEN);
+
+    // generate random charaters from alphanum
+    for (let i = 0; i < IDLEN; i++) {
+      generatedId += alphanum[Math.floor(Math.random() * alphanum.length)];
+    }
+
+    // uppercase random characters
+    for (let i = 0; i < uppCount; i++) {
+      const uppIndex = Math.floor(Math.random() * IDLEN);
+      generatedId = `${generatedId.slice(0,uppIndex)}${generatedId[uppIndex].toUpperCase()}${generatedId.slice(uppIndex+1)}`;
+    }
+
+    res.locals.id = generatedId;
+    return next();
+  }
+
+  res.locals.id = req.body.url_id;
+  next();
+}
+
+// Server-side Validation
+function validateBody(req, res, next) {
+  const url = req.body.original_url;
+
+  if (req.body.url_id.length > 0) {
+    const idRegex = new RegExp('^[a-zA-Z0-9]*$');
+    if (req.body.url_id.length !== 5) {
+      return res.status(400).json({ error: "Id length must be 5." });
+    } else if (!idRegex.test(req.body.url_id)) {
+      return res.status(400).json({ error: "Id must only contain alphanumeric characters." });
+    }
+  }
+
+  if (url === "") {
+    return res.status(400).json({ error: "Url is missing." });
+  } else if (!url || !validateUrl(url)) {
+    return res.status(400).json({ error: "Invalid url." });
+  }
+
+  res.locals.url = url;
+  next();
+}
+
+function validateUrl(urlstr) {
+  try {
+    let url = new URL(urlstr);
+    return url.protocol === 'http:' || url.protocol == 'https:';
+  } catch(err) {
+    return false;
+  }
+}
+
 
 module.exports = router;
