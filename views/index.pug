@@ -1,0 +1,53 @@
+doctype html 
+
+html(lang="en")
+  head 
+    meta(charset='utf-8')
+    meta(http-equiv="X-UA-Compatible" content="IE-edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title URL Shortener
+
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    // 'Anybody', cursive
+    link(href="https://fonts.googleapis.com/css2?family=Anybody&display=swap" rel="stylesheet")
+    // 'Source Sans Pro', sans-serif
+    link(href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet")
+
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+    crossorigin="anonymous")
+    link(rel="stylesheet" href="/public/css/styles.css" type="text/css")
+
+  body
+    h1.title
+      a(href="/") URL Shortener
+
+    form(action="/shorten" method="POST").form-wrapper.container
+      div.mb-4.input-div
+        label(for="urlinput").form-label Your URL
+        input(type="text" placeholder="https://www.youtube.com/watch?v=BEP6piDlrWw"
+        autocomplete="off" name="original_url")#urlinput.input-text.form-control.shadow-none
+
+      div.mb-3.input-div
+        label(for="customidinput").form-label Custom URL Id 
+          small (optional)
+        input(type="text" placeholder="jett1" autocomplete="off" 
+        name="url_id")#idinput.input-text.form-control.shadow-none
+
+      div.inputbb-text.mb-3
+        p Your id must be:
+        ul 
+          li 5 characters
+          li Alphanumeric (letters and numbers)
+
+      p.invalid-msg easter egg
+      input(type="submit" value="Shorten URL")#shortenUrl.btn
+
+    p.credits-footer A project by 
+      a(href="https://github.com/Ry2uko" target="_blank") Ry2uko
+    
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" 
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer")
+    script(type="text/javascript" src="/public/js/index.js")

@@ -4,22 +4,33 @@ const express = require('express');
 const router = express.Router();
 const URLMODEL = require('../models/url');
 
-router.post('/', getId, validateBody, (req, res) => {
-  const url = res.locals.url,
-  id = res.locals.id;
+router.route('/')
+  .post(getId, validateBody, async (req, res) => {
+    const original_url = res.locals.url,
+    id = res.locals.id;
 
-  let host = process.env.HOST || "";
+    let host = process.env.HOST || "";
+    if (host === 'localhost') {
+      host += `:${process.env.PORT}`;
+    }
+    let shortened_url = `${host}/shorten/${id}`;
 
-  if (host === 'localhost') {
-    host += `:${process.env.PORT}`;
-  }
+    const url_model = new URLMODEL({
+      shortened: shortened_url,
+      original: original_url,
+      url_id: id,
+    });
 
-  res.status(201).json({
-    "original_url": url,
-    "shortened_url": `${host}/api/shorten/${id}`
+    try {
+      await url_model.save();
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   });
-});
 
+router.get('/:urlId', async (req, res) => {
+
+});
 
 function getId(req, res, next) {
   const alphanum = '1the2quick3brown4fox5jumped6over7the8lazy9dog0'.split('');

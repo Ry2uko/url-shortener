@@ -1,12 +1,17 @@
+'use strict';
 require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
 
 mongoose.connect(process.env.DATABASE_URl, { useNewUrlParser: true });
 const db = mongoose.connection;
@@ -16,16 +21,14 @@ db.once('open', () => console.log('Connected to Database'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json()); // Raw requests
-
 app.use('/public', express.static(`${process.cwd()}/public`));
 
-
 app.get('/', (req, res) => {
-  res.sendFile(`${process.cwd()}/views/index.html`);
+  res.render('index');
 });
 
 const shortenRouter = require('./routes/shorten');
-app.use('/api/shorten', shortenRouter);
+app.use('/shorten', shortenRouter);
 
 app.use((req, res) => {
   return res.status(404).json({ error: "Not Found" });

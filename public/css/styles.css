@@ -72,18 +72,18 @@ form.form-wrapper p.invalid-msg {
           user-select: none;
 }
 
-div.input-div label {
+div.input-div label.form-label {
   font-size: 1.2rem;
 }
 
-div.input-div input {
+div.input-div input.inputtext {
   height: 50px;
   font-size: 1.15rem;
   -webkit-box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 1px 0px inset !important;
           box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 1px 0px inset !important;
 }
 
-div.input-div input:focus {
+div.input-div input.inputtext:focus {
   border-color: #232ED1;
 }
 
