@@ -18,9 +18,13 @@ app.use(cors());
 
 app.use('/public', express.static(`${process.cwd()}/public`));
 
+
 app.get('/', (req, res) => {
   res.sendFile(`${process.cwd()}/views/index.html`);
 });
+
+const shortenRouter = require('./routes/shorten');
+app.use('/api/shorten', shortenRouter);
 
 app.use((req, res) => {
   res.status(404).send('404 Not Found');
