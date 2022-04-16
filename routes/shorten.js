@@ -7,9 +7,16 @@ const URLMODEL = require('../models/url');
 router.post('/', getId, validateBody, (req, res) => {
   const url = res.locals.url,
   id = res.locals.id;
+
+  let host = process.env.HOST || "";
+
+  if (host === 'localhost') {
+    host += `:${process.env.PORT}`;
+  }
+
   res.status(201).json({
     "original_url": url,
-    "shortened_url": `${process.env.HOST || ""}/api/shorten/${id}`
+    "shortened_url": `${host}/api/shorten/${id}`
   });
 });
 
