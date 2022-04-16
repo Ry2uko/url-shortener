@@ -7,13 +7,92 @@
 
 body, html {
   width: 100%;
+  height: 100%;
   body: 100%;
   overflow-x: hidden;
+  background-color: #F9F9F9;
+  font-family: 'Source Sans Pro', Helvetica, sans-serif;
 }
 
 h1 {
   text-align: center;
-  font-size: 4rem;
-  font-family: helvetica, sans-serif;
+  margin-top: 3.4rem;
+  font-size: 4.4rem;
+  font-family: 'Anybody', cursive;
+}
+
+h1 a {
+  text-decoration: none;
+  color: #232ED1;
+}
+
+form.form-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 50px 40px;
+  background-color: #fff;
+  margin: 3.6rem auto 6rem auto;
+  width: 100%;
+  max-width: 850px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+form.form-wrapper input[type="submit"] {
+  width: 300px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  padding: 8px 0;
+  background-color: #232ED1;
+  color: #fff;
+  border: #232ED1 1px solid;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+form.form-wrapper input[type="submit"]:hover {
+  background-color: #fff;
+  border-color: #232ED1;
+  color: #232ED1;
+}
+
+div.input-div label {
+  font-size: 1.2rem;
+}
+
+div.input-div input {
+  height: 50px;
+  font-size: 1.15rem;
+}
+
+div.input-div input:focus {
+  border-color: #232ED1;
+}
+
+div.inputbb-text {
+  margin-bottom: 35px !important;
+}
+
+div.inputbb-text p {
+  margin: 10px 0 1px 0;
+  font-size: 1.1rem;
+}
+
+div.inputbb-text li {
+  font-size: 1.05rem;
+}
+
+p.credits-footer {
+  text-align: center;
+  font-size: 1.15rem;
+}
+
+p.credits-footer a {
+  text-decoration: none;
 }
 /*# sourceMappingURL=styles.css.map */

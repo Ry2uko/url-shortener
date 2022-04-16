@@ -13,7 +13,7 @@ const db = mongoose.connection;
 db.on('error', err => console.error(err));
 db.once('open', () => console.log('Connected to Database'));
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use('/public', express.static(`${process.cwd()}/public`));
