@@ -15,7 +15,65 @@ body, html
 
 h1.title
   text-align: center
-  margin-top: 3.4rem
+  margin: 4rem
+  color: $theme-blue
   font:
     size: 4.4rem
     family: 'Anybody', cursive
+
+h4.h4label 
+  font-size: 1.35rem
+
+div
+  &.link-wrapper
+    display: flex
+    flex-direction: column    
+    padding: 50px
+    background-color: #fff
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px
+    border-radius: 0.4rem
+    width: 100%
+    max-width: 800px
+    margin-bottom: 7rem
+
+    a.againbtn
+      width: 300px
+      margin: 0 auto
+      font-size: 1.2rem
+      padding: 8px 0
+      background-color: $theme-blue
+      border: $theme-blue 1px solid
+      color: #fff
+      transition: 0.2rem
+
+      &:hover
+        color: $theme-blue
+        background-color: #fff
+        border-color: $theme-blue
+
+  &.ig-wrapper
+    margin: 0 auto 5rem auto
+
+  &.input-group
+    width: 680px
+
+    input, button
+      height: 50px  
+
+    input#shortenedlink
+      background-color: #fff
+      color: #535557
+      font-size: 1.15rem
+
+      &:focus
+        border-color: #999
+
+    button
+      width: 55px
+      font-size: 1.35rem
+
+p.credits-footer
+  text-align: center
+  font-size: 1.15rem
+  a
+    text-decoration: none

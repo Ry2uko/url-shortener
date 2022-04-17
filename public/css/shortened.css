@@ -15,8 +15,85 @@ body, html {
 
 h1.title {
   text-align: center;
-  margin-top: 3.4rem;
+  margin: 4rem;
+  color: #232ED1;
   font-size: 4.4rem;
   font-family: 'Anybody', cursive;
+}
+
+h4.h4label {
+  font-size: 1.35rem;
+}
+
+div.link-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 50px;
+  background-color: #fff;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 0.4rem;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 7rem;
+}
+
+div.link-wrapper a.againbtn {
+  width: 300px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  padding: 8px 0;
+  background-color: #232ED1;
+  border: #232ED1 1px solid;
+  color: #fff;
+  -webkit-transition: 0.2rem;
+  transition: 0.2rem;
+}
+
+div.link-wrapper a.againbtn:hover {
+  color: #232ED1;
+  background-color: #fff;
+  border-color: #232ED1;
+}
+
+div.ig-wrapper {
+  margin: 0 auto 5rem auto;
+}
+
+div.input-group {
+  width: 680px;
+}
+
+div.input-group input, div.input-group button {
+  height: 50px;
+}
+
+div.input-group input#shortenedlink {
+  background-color: #fff;
+  color: #535557;
+  font-size: 1.15rem;
+}
+
+div.input-group input#shortenedlink:focus {
+  border-color: #999;
+}
+
+div.input-group button {
+  width: 55px;
+  font-size: 1.35rem;
+}
+
+p.credits-footer {
+  text-align: center;
+  font-size: 1.15rem;
+}
+
+p.credits-footer a {
+  text-decoration: none;
 }
 /*# sourceMappingURL=shortened.css.map */

@@ -24,18 +24,18 @@ html(lang="en")
       a(href="/") URL Shortener
 
     form(action="/shorten" method="POST").form-wrapper.container
-      div.mb-4.input-div
+      .mb-4.input-div
         label(for="urlinput").form-label Your URL
         input(type="text" placeholder="https://www.youtube.com/watch?v=BEP6piDlrWw"
         autocomplete="off" name="original_url")#urlinput.input-text.form-control.shadow-none
 
-      div.mb-3.input-div
+      .mb-3.input-div
         label(for="customidinput").form-label Custom URL Id 
           small (optional)
         input(type="text" placeholder="jett1" autocomplete="off" 
         name="url_id")#idinput.input-text.form-control.shadow-none
 
-      div.inputbb-text.mb-3
+      .inputbb-text.mb-3
         p Your id must be:
         ul 
           li 5 characters
