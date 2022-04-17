@@ -1,36 +1,43 @@
 require('dotenv').config();
 
 const express = require('express');
+const url = require('../models/url');
 const router = express.Router();
 const URLMODEL = require('../models/url');
 
-router.route('/')
-  .post(getId, validateBody, async (req, res) => {
-    const original_url = res.locals.url,
-    id = res.locals.id;
+router.post('/', getId, validateBody, removeId, async (req, res) => {
+  const original_url = res.locals.url,
+  id = res.locals.id;
 
-    let host = process.env.HOST || "";
-    if (host === 'localhost') {
-      host += `:${process.env.PORT}`;
-    }
-    let shortened_url = `${host}/shorten/${id}`;
+  let host = process.env.HOST || "";
+  if (host === 'localhost') {
+    host += `:${process.env.PORT}`;
+  }
+  let shortened_url = `${host}/shorten/${id}`;
 
-    const url_model = new URLMODEL({
-      shortened: shortened_url,
-      original: original_url,
-      url_id: id,
-    });
-
-    try {
-      await url_model.save();
-      res.render('shortened', {original_url, shortened_url});
-    } catch (err) {
-      res.status(400).json({ error: err.message });
-    }
+  const url_model = new URLMODEL({
+    shortened: shortened_url,
+    original: original_url,
+    url_id: id,
   });
 
-router.get('/:urlId', async (req, res) => {
+  try {
+    await url_model.save();
+    res.render('shortened', {original_url, shortened_url});
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
 
+router.get('/:url_id', async (req, res) => {
+  try {
+    const urlObj = await URLMODEL.find({ url_id: req.params.url_id });
+
+    if (urlObj.length === 0) return res.status(404).json({ error: 'Not found' });
+    res.status(301).redirect(urlObj[0].original);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 });
 
 function getId(req, res, next) {
@@ -58,6 +65,10 @@ function getId(req, res, next) {
 
   res.locals.id = req.body.url_id;
   next();
+}
+
+function removeId(req, res, next) {
+  URLMODEL.findOneAndDelete({ url_id: res.locals.id }, () => next());
 }
 
 // Server-side Validation

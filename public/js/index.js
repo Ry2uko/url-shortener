@@ -15,16 +15,16 @@ const Validation = {
 
     switch(errType) {
       case 'no-url':
-        message = "You forgot the link ಠ_ಠ";
+        message = "The link, please? ಠ_ಠ";
         break;
       case 'invalid-url':
-        message = "Url is no bueno";
+        message = "Invalid URL";
         break;
       case 'invalid-len-id':
-        message = "It said 5 characters, 5!!"
+        message = "Invalid Id Length"
         break;
       case 'not-alphanumeric-id':
-        message = "Do you even know what letters and numbers mean"
+        message = "Id Not Alphanumeric"
 
     }
 

@@ -31,7 +31,11 @@ const shortenRouter = require('./routes/shorten');
 app.use('/shorten', shortenRouter);
 
 app.use((req, res) => {
-  return res.status(404).json({ error: "Not Found" });
+  return res.status(404).render('not_found', {
+    errTitle: '404 Not Found',
+    errStatus: '404',
+    errMsg: 'Not Found'  
+  });
 })
 
 app.listen(port, () => {

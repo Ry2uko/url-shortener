@@ -8,6 +8,10 @@ const urlSchema = new mongoose.Schema({
   original: {
     type: String,
     required: true
+  },
+  url_id: {
+    type: String,
+    required: true
   }
 });
 
