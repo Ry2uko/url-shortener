@@ -7,5 +7,8 @@ $(document).ready(function(){
 
     navigator.clipboard.writeText(input.value);
     input.blur();
+
+    $('.clipboard-alert').css('color', '#198754')
+    setTimeout(() => $('.clipboard-alert').css('color', '#fff'), 1500)
   });
 });

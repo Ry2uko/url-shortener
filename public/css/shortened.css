@@ -62,7 +62,7 @@ div.link-wrapper a.againbtn:hover {
 }
 
 div.ig-wrapper {
-  margin: 0 auto 5rem auto;
+  margin: 0 auto 1.5rem auto;
 }
 
 div.input-group {
@@ -88,8 +88,17 @@ div.input-group button {
   font-size: 1.35rem;
 }
 
-p.credits-footer {
+p {
   text-align: center;
+}
+
+p.clipboard-alert {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+p.credits-footer {
   font-size: 1.15rem;
 }
 
