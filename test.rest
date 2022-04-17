@@ -1,4 +1,4 @@
-POST http://localhost:1010/api/shorten
+POST http://localhost:1010/shorten
 Content-Type: application/json
 
 {

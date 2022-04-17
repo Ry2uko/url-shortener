@@ -23,7 +23,7 @@ router.post('/', getId, validateBody, removeId, async (req, res) => {
 
   try {
     await url_model.save();
-    res.render('shortened', { shortened_url });
+    res.status(201).render('shortened', { shortened_url });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
