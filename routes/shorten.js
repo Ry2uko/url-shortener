@@ -33,7 +33,8 @@ router.get('/:url_id', async (req, res) => {
   try {
     const urlObj = await URLMODEL.find({ url_id: req.params.url_id });
 
-    if (urlObj.length === 0) return res.status(404).json({ error: 'Not found' });
+    if (urlObj.length === 0) return res.status(404).render('not_found', { errType: 'url' });
+    
     res.status(301).redirect(urlObj[0].original);
   } catch (err) {
     res.status(400).json({ error: err.message });

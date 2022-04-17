@@ -5,9 +5,34 @@ html(lang="en")
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible" content="IE-edge")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title #{errTitle}
-    link(rel="stylesheet" href="css/styles.css" type="text/css")
+    title 404 Not Found
+
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    // 'Anybody', cursive
+    link(href="https://fonts.googleapis.com/css2?family=Anybody&display=swap" rel="stylesheet")
+    // 'Source Sans Pro', sans-serif
+    link(href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet")
+
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+    crossorigin="anonymous")
+    link(rel="stylesheet" href="/public/css/not_found.css" type="text/css")
 
   body
-    h1 #{errStatus}
-    script(type="text/javascript" src="js/script.js")
+    if errType === 'route'
+      h1.errTitle Sorry, nothing to see here.
+      p.caption except for this adorable pug 
+      img(src="https://pbs.twimg.com/media/B7G2mdqIYAUC95X.jpg" alt="route pug").pugimg
+      p.redirect
+        a(href="/") Click me to go back home (say goodbye to pug)
+
+    else
+      h1.errTitle Sorry, this link currently unavailable or just not a thing yet.
+      p.caption instead, have a look at this cat 
+      img(src="https://www.business2community.com/wp-content/uploads/2014/02/cat-memes.jpg"
+      alt="route pug").catimg 
+      p.imgcaption haha 
+
+      p.redirect
+        a(href="/") Click me to go back home
