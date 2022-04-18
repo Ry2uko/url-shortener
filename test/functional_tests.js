@@ -2,6 +2,7 @@ const chaiHttp = require('chai-http');
 const chai = require('chai');
 const assert = chai.assert;
 const server = require('../server');
+const req = require('express/lib/request');
 
 chai.use(chaiHttp);
 
@@ -36,21 +37,49 @@ suite('Functional Tests', () => {
   suite('POST request to /shorten', () => {
     // Validation Tests
     test('Handle missing url', done => {
-      done();
-    });
+      postReq('/shorten', {
+        original_url: "",
+        url_id: ""
+      }).then(resp => {
+        assert.equal(resp.body.error, 'Url is missing.', 'api didn\'t handle missing url');
+        assert.equal(resp.statusCode, 400, 'api didn\'t send a 400 status');
+        done();
+      }).catch(err => done(err));;
+    }).timeout(5000);
     test('Handle invalid url', done => {
-      done();
-    });
+      postReq('/shorten', {
+        original_url: "thisisaninvalidurlhahahahah",
+        url_id: ""
+      }).then(resp => {
+        assert.equal(resp.body.error, 'Invalid url.', 'api didn\'t handle invalid url');
+        assert.equal(resp.statusCode, 400, 'api didn\'t send a 400 status');
+        done();
+      }).catch(err => done(err));;
+    }).timeout(5000);
     test('Handle invalid id length', done => {
-      done();
-    });
+      postReq('/shorten', {
+        original_url: "https://www.chaijs.com/",
+        url_id: "704508734528075347083"
+      }).then(resp => {
+        assert.equal(resp.body.error, 'Id length must be 5.', 'api didn\'t handle invalid id length');
+        assert.equal(resp.statusCode, 400, 'api didn\'t send a 400 status');
+        done();
+      }).catch(err => done(err));;
+    }).timeout(5000);
     test('Handle non-alphanumeric id', done => {
-      done();
-    });
+      postReq('/shorten', {
+        original_url: "https://en.wikipedia.org/wiki/Seleucus_VI_Epiphanes",
+        url_id: "theo!"
+      }).then(resp => {
+        assert.equal(resp.body.error, 'Id must only contain alphanumeric characters.', 'api didn\'t handle non-alphanumeric id');
+        assert.equal(resp.statusCode, 400, 'api didn\'t send a 400 status');
+        done();
+      }).catch(err => done(err));;
+    }).timeout(5000);
 
     test('POST valid url & missing id', done => {
       postReq('/shorten', {
-        original_url: "https://www.w3schools.com/js/default.asp",
+        original_url: "https://www.w3schools.com/js/default.asp", 
         url_id: ""
       }).then(resp => {
         const status = resp.statusCode;
@@ -84,18 +113,58 @@ suite('Functional Tests', () => {
   });
   suite('GET request to /shorten/:url_id', () => {
     test('GET non-existing id', done => {
-      done();
-    });
+      chai.request(server)
+      .get('/shorten/123456')
+      .end((err, res) => {
+        if (!err) {
+          assert.equal(res.statusCode, 404, 'api didn\'t send a 404 status');
+          done();
+        } else {
+          done(err);
+        }
+      });
+    }).timeout(10000);
     test('GET existing id', done => {
-      done();
-    });
+      const original_url = 'https://github.com/Ry2uko',
+      url_id = 'ry2uk'
+      postReq('/shorten', { original_url, url_id }).then(() => {
+        chai.request(server)
+        .get(`/shorten/${url_id}`)
+        .end((err, res) => {
+          if (!err) {
+            assert.equal(res.statusCode, 200, 'api didn\'t send a 200 status');
+            done();
+          } else {
+            done(err);
+          }
+        });
+      }).catch(err => done(err));
+    }).timeout(10000);
   });
   suite('Misc', () => {
     test('GET non-existing route', done => {
-      done();
-    });
+      chai.request(server)
+      .get('/non-existent')
+      .end((err, res) => {
+        if (!err) {
+          assert.equal(res.statusCode, 404, 'server didn\'t send a 404 status');
+          done();
+        } else {
+          done(err);
+        }
+      });
+    }).timeout(5000);
     test('GET /', done => {
-      done();
-    });
+      chai.request(server)
+      .get('/')
+      .end((err, res) => {
+        if (!err) {
+          assert.exists(res.text, 'server didn\'t render home page');
+          done();
+        } else {
+          done(err);
+        }
+      });
+    }).timeout(5000);
   });
 });
